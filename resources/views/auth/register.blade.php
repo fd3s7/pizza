@@ -1,4 +1,6 @@
-@extends('template.master') @section('title', '新規登録') @section('css')
+@extends('template.master')
+@section('title', '新規登録')
+@section('css')
 <link rel="stylesheet" href="/css/auth/register/index.css" media="all" title="no title"> @endsection @section('js')
 <script type="text/javascript" src="https://ajaxzip3.github.io/ajaxzip3.js" charset="utf-8"></script>
 <script src="/js/common/autokana/jquery.autoKana.js" language="javascript" type="text/javascript"></script>
@@ -10,7 +12,8 @@
             });
         });
 </script>
-@endsection @section('main')
+@endsection
+@section('main')
 <div class="container">
 <div class="wrap">
   <div class="main-title">

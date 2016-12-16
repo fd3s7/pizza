@@ -152,6 +152,7 @@ Route::post('/pizzzzza/order/top', 'auth\AdminLoginController@login'); //管理�
 
 Auth::routes();
 
+Route::get('/register','auth\RegisterController@register');
 Route::post('/register/confirm', 'auth\RegisterController@confirm');
 Route::post('/register/complete','auth\RegisterController@complete');
 Route::get('password/input' ,'auth\ResetPasswordController@input'); //パスワードリセットメール入力ページ
