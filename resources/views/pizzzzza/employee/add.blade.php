@@ -1,6 +1,6 @@
 @extends('template/admin')
 
-@section('title', '従業員追加画面')
+@section('title', '従業員追加')
 
 @section('css')
     <link rel="stylesheet" href="/css/pages/index.css" media="all" title="no title">
@@ -28,7 +28,7 @@
                 <table class="table table-bordered ">
                     <tbody>
                     <tr>
-                        <th class="text-center" >氏名</th>
+                        <th class="text-center" >名前</th>
                         <td><input class="form-control" type="text" name="name" value="" placeholder="例）山田太郎"></td>
                     </tr>
                     <tr>

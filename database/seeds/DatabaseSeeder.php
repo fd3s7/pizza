@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call('OrdersMasterSeeder');
         $this->call('OrdersDetailsTableSeeder');
         $this->call('CouponsMasterSeeder');
-        $this->call('CampaignesMasterSeeder');
+        $this->call('CampaignsMasterSeeder');
         $this->call('UsersSeeder');
         $this->call('EmployeeMasterSeeder');
 
@@ -177,7 +177,7 @@ class UsersSeeder extends Seeder
             'address3' => null,
             'phone' => str_replace(array('-', 'ー'), '', $faker->phoneNumber),
             'gender_id' => 1,
-            'birthday' => 19960607,
+            'birthday' => null,
             'authority_id' => 3,
         ]);
         //9 テストデータ：電話会員（電話番号が同じ）
@@ -356,7 +356,7 @@ class CouponsMasterSeeder extends Seeder
             'product_id' => null,
             'coupon_start_date' => Carbon::parse('2016-12-06'),
             'coupon_end_date' => Carbon::parse('2017-06-07'),
-            'coupon_number' => '5000OFF',
+            'coupon_number' => '1000OFF',
             'coupon_conditions_count' => 1,
             'coupon_conditions_first' => 1,
         ]);
@@ -776,7 +776,7 @@ class OrdersMasterSeeder extends Seeder
         $baseDate = Carbon::today();
 
         // WEB会員からの注文（クーポンなし）
-        for($i = 1; $i<= 10; $i++){
+        for($i = 1; $i<= 50; $i++){
 
             //配達希望日時
             $apointment_date = $baseDate->addHours($i);
@@ -805,7 +805,7 @@ class OrdersMasterSeeder extends Seeder
         }
 
         // 電話会員からの注文（クーポンなし）
-        for($i = 1; $i<= 10; $i++){
+        for($i = 1; $i<= 50; $i++){
 
             //配達希望日時
             $apointment_date = $baseDate->addHours($i);
@@ -888,10 +888,12 @@ class OrdersDetailsTableSeeder extends Seeder
     {
         DB::table('orders_details_table')->delete();
 
+        // orderマスタのfor文の件数を変更した場合、ここを変更
+        $max = 100;
 
         // WEB会員からの注文 + 電話会員からの注文（クーポンなし）
         // orders_masterの注文IDと整合性を保っています
-        for($i = 1; $i<= 20; $i++){
+        for($i = 1; $i<= $max; $i++){
             $orderCnt = rand(1,5);
             $randomCnt = rand(0,4);
             for($k = 1; $k <= $orderCnt; $k++){
@@ -904,52 +906,52 @@ class OrdersDetailsTableSeeder extends Seeder
         }
 
         OrderDetail::create([
-            'id' => 21,
+            'id' => $max + 1,
             'price_id' => 1,
             'number' => 1,
         ]);
         OrderDetail::create([
-            'id' => 21,
+            'id' => $max + 1,
             'price_id' => 2,
             'number' => 2,
         ]);
         OrderDetail::create([
-            'id' => 21,
+            'id' => $max + 1,
             'price_id' => 3,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 22,
+            'id' => $max + 2,
             'price_id' => 4,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 22,
+            'id' => $max + 2,
             'price_id' => 7,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 23,
+            'id' => $max + 3,
             'price_id' => 8,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 24,
+            'id' => $max + 4,
             'price_id' => 1,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 24,
+            'id' => $max + 4,
             'price_id' => 2,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 25,
+            'id' => $max + 5,
             'price_id' => 1,
             'number' => 3,
         ]);
         OrderDetail::create([
-            'id' => 25,
+            'id' => $max + 5,
             'price_id' => 2,
             'number' => 3,
         ]);
@@ -957,7 +959,7 @@ class OrdersDetailsTableSeeder extends Seeder
 }
 
 //キャンペーン
-class CampaignesMasterSeeder extends Seeder
+class CampaignsMasterSeeder extends Seeder
 {
 
     public function run()

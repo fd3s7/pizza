@@ -25,7 +25,6 @@
     Route::post('/cart/clear', 'CartsController@clear');
 
 //　注文
-    Route::get('/order/confirm', 'OrdersController@index')->name('order');
     Route::post('/order/confirm/insert', 'OrdersController@insert');
     Route::get('/order/complete', 'OrdersController@complete')->name('complete');
     Route::any('/order/confirm/coupon', 'OrdersController@coupon');
@@ -37,6 +36,9 @@
     Route::get('/faq', 'PagesController@faq');
 
 Route::group(['middleware' => ['userauth']], function () {
+
+//注文ページ
+    Route::get('/order/confirm', 'OrdersController@index')->name('order');
 
 //マイページ
     Route::get('/mypage/order/history', 'MypagesController@orderHistory');
@@ -52,8 +54,8 @@ Route::group(['middleware' => ['userauth']], function () {
 });
 
 //トピック
-    Route::get('/topic', 'CampaignesController@index');
-    Route::get('/topicdetail', 'CampaignesController@campaignDetail');
+    Route::get('/topic', 'CampaignsController@index');
+    Route::get('/topicdetail', 'CampaignsController@campaignDetail');
 
 // コンタクト
     Route::get('/contact', 'ContactController@index');
@@ -77,7 +79,7 @@ Route::group(['middleware' => ['adminauth']], function () {
     Route::post('/pizzzzza/employee/{id}/delete', 'EmployeesController@destroy'); //従業員削除
     Route::get('/pizzzzza/employee/{id}/edit', 'EmployeesController@edit'); //従業員編集
     Route::get('/pizzzzza/employee/add', 'EmployeesController@add'); //従業員追加
-    Route::post('/pizzzzza/employee/add/store', 'EmployeesController@store'); //従業員追加処理
+    Route::post('/pizzzzza/employee/store', 'EmployeesController@store'); //従業員追加処理
     Route::post('/pizzzzza/employee/{id}/update', 'EmployeesController@update'); //従業員更新処理
 
 //クーポン
@@ -96,10 +98,6 @@ Route::group(['middleware' => ['adminauth']], function () {
 //従業員用キャンペーン
     Route::get('/pizzzzza/campaign/','AdminCampaignsController@index')->name('adminCampIndex');    // 管理者クーポン一覧
     Route::get('/pizzzzza/campaign/{id}/show','AdminCampaignsController@show')->name('adminCampShow');    // 管理者クーポン詳細
-    Route::get('/pizzzzza/campaign/{id}/add','AdminCampaignsController@add');   // 管理者クーポン追加
-    Route::get('/pizzzzza/campaign/{id}/update','AdminCampaignsController@update');   // 管理者クーポン更新
-    Route::get('/pizzzzza/campaign/{id}/delete','AdminCampaignsController@delete');   // 管理者クーポン削除
-    Route::get('/pizzzzza/campaign/store','AdminCampaignsController@store');   // 管理者クーポン処理
     Route::get('/pizzzzza/campaign/history','AdminCampaignsController@history');   // 管理者クーポン履歴
 
 //メニュー
@@ -130,8 +128,7 @@ Route::group(['middleware' => ['adminauth']], function () {
     Route::post('/pizzzzza/order/accept/customer/{id}/update/web', 'PhoneOrdersController@updateWeb'); //会員情報編集＞更新処理＞WEB
     Route::get('/pizzzzza/order/accept/customer/input', 'PhoneOrdersController@newCustomer')->name('newCustomer'); //新規登録
     Route::post('/pizzzzza/order/accept/customer/input/add', 'PhoneOrdersController@newCustomerInsert'); //新規登録＞DB追加処理
-    Route::post('/pizzzzza/order/accept/customer/cart','PhoneOrdersController@orderCart'); //商品入力ページ・カート処理
-
+    Route::post('/pizzzzza/order/accept/customer/cart','PhoneOrdersController@orderCart'); //商品入力ページ・カート処理　　　
 //電話注文　注文処理
     Route::get('/pizzzzza/order/accept/item/{id}/select', 'PhoneOrdersController@orderSelect')->name('telOrderSelect'); //商品入力・選択ページ
     Route::get('/pizzzzza/order/accept/item/confirm', 'PhoneOrdersController@orderConfirm'); //注文情報確認ページ
@@ -155,8 +152,6 @@ Route::post('/pizzzzza/order/top', 'auth\AdminLoginController@login'); //管理�
 
 Auth::routes();
 
-Route::post('/register','auth\RegisterController@register'); //登録処理
-Route::get('/register','auth\RegisterController@getregister'); //登録ページ
-Route::post('/register/complete','auth\RegisterController@complete');
 Route::post('/register/confirm', 'auth\RegisterController@confirm');
+Route::post('/register/complete','auth\RegisterController@complete');
 Route::get('password/input' ,'auth\ResetPasswordController@input'); //パスワードリセットメール入力ページ

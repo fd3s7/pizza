@@ -1,9 +1,8 @@
 @extends('template/admin')
 
-@section('title', 'メニュー一覧')
+@section('title', '注文履歴')
 
 @section('css')
-    <link rel="stylesheet" href="/css/pizzzzza/menu/index.css" media="all" title="no title">
 @endsection
 
 @section('pankuzu')
@@ -17,7 +16,6 @@
     <h1>注文履歴</h1>
 
     <div class="form-group table-responsive">
-
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -41,12 +39,12 @@
             <tbody>
             @foreach ($orders as $order)
                 <tr class="link" data-href="/pizzzzza/order/{{ $order->id }}/show">
-                    <td style="text-align: center;">{{ \Carbon\Carbon::parse( $order->order_date )->format('Y年m月d日 H時i分') }}</td>
+                    <td>{{ \Carbon\Carbon::parse( $order->order_date )->format('Y年m月d日 H時i分') }}</td>
                     <td style="text-align: center;">{{ $order->user->name }}</td>
-                    <td style="text-align: center;">{{ $order->user->address1.$order->user->address2.$order->user->address3 }}</td>
+                    <td>{{ $order->user->address1.$order->user->address2.$order->user->address3 }}</td>
                     <td style="text-align: center;">{{ $order->user->phone }}</td>
                     @if(is_null($order->employee))
-                        <td style="text-align: center;">Web注文</td>
+                        <td style="text-align: center;">Web</td>
                     @else
                         <td style="text-align: center;">{{ $order->employee->user->name }}</td>
                     @endif
@@ -54,6 +52,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="ac">
+            {{$orders->links()}}
+        </div>
     </div>
 @endsection
 

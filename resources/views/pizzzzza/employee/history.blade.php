@@ -1,6 +1,6 @@
 @extends('template/admin')
 
-@section('title', '従業員管理画面')
+@section('title', '従業員履歴')
 
 @section('css')
     <link rel="stylesheet" href="/css/pages/index.css" media="all" title="no title">
@@ -9,18 +9,18 @@
 @section('pankuzu')
     <ol class="breadcrumb">
         <li><a href="/pizzzzza/order">ホーム</a></li>
-        <li class="active">従業員履歴一覧</li>
+        <li class="active">従業員履歴</li>
     </ol>
 @endsection
 
 @section('main')
-    <h1>従業員履歴一覧</h1>
+    <h1>従業員履歴</h1>
     <div class="row">
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>氏名</th>
+                <th>名前</th>
                 <th>契約開始日</th>
                 <th>契約終了日</th>
                 <th>更新日時</th>

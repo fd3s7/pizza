@@ -1,6 +1,6 @@
 @extends('template/admin')
 
-@section('title', 'ギフトクーポン新規発行')
+@section('title', 'プレゼントクーポン新規発行')
 
 @section('css')
     <link rel="stylesheet" href="/css/pages/index.css" media="all" title="no title">
@@ -93,7 +93,7 @@
             </tbody>
         </table>
         <div class="col-md-4 col-md-offset-4 ac">
-            <a class="btn btn-default btn-lg mr" href="/pizzzzza/coupon/list">戻る</a>
+            <a class="btn btn-default btn-lg mr" href="/pizzzzza/coupon">戻る</a>
             <input type="submit" class="btn btn-primary btn-lg" name="store" value="追加">
         </div>
         {{ csrf_field() }}

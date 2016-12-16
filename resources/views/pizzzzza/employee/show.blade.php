@@ -1,6 +1,6 @@
 @extends('template/admin')
 
-@section('title', '従業員管理画面')
+@section('title', '従業員詳細')
 
 @section('css')
     <link rel="stylesheet" href="/css/pages/index.css" media="all" title="no title">
@@ -72,7 +72,13 @@
                 </tr>
                 <tr>
                     <th class="text-center">契約終了日</th>
-                    <td>{{ \Carbon\Carbon::parse($employee->emoloyee_agreement_enddate)->format('Y年m月d日') }}</td>
+                    <td>
+                        @if($employee->emoloyee_agreement_enddate == null)
+                            未設定
+                        @else
+                            {{ \Carbon\Carbon::parse($employee->emoloyee_agreement_enddate)->format('Y年m月d日') }}
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <th class="text-center">登録日</th>
