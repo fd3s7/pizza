@@ -66,7 +66,7 @@
                     </tr>
                 </table>
                 <a href="/mypage/edit">戻る</a>
-                <a class="form-bottom" href="#">更新</a>
+                <a class="form-bottom" id="submit" href="#">更新</a>
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
             </form>
         </div>
@@ -80,5 +80,13 @@
                 animation: "slide"
             });
         });
+
+        var clicked = false;
+        $('#submit').on('click', function () {
+            if (!clicked) {
+                clicked = true;
+                $('#post').submit();
+            }
+        })
     </script>
 @endsection

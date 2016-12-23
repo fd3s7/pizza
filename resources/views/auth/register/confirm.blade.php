@@ -139,7 +139,11 @@
 <script type="text/javascript">
   var set=0;
   function double() {
-  if(set==0){ set=1; } else {
-  return false; }}
+    if(set==0){
+      set=1;
+    } else {
+      return false;
+    }
+ }
 </script>
 @endsection

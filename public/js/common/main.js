@@ -35,10 +35,15 @@
 		});
 
         $(function(){
-            $('.form-bottom').click(function(){
-                var form = $(this).parent();
-                $(form).submit();
-            });
+					var set = true;
+					if (set) {
+						$('.form-bottom').click(function(){
+								var form = $(this).parent();
+								$(form).submit();
+								set = false;
+						});
+					}
+
         });
 
 		$(function(){

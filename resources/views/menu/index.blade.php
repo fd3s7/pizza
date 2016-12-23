@@ -24,6 +24,7 @@
                             <div class="text"><p>{{ $product->product_text }}</p></div>
                             <div class="btn">
                                 <form class="" action="/cart/store" method="post">
+                                  {{ csrf_field() }}
                                 <span>
                                     <select class="" name="sum">
                                         @for ($i=1; $i <= 10 ; $i++)
@@ -32,8 +33,7 @@
                                     </select>
                                 </span>
                                     <input type="hidden" name="id" value="{{ $product->id }}">
-                                    <div class="form-bottom">カートに入れる</div>
-                                    {{ csrf_field() }}
+                                    <a class="form-bottom">カートに入れる</a>
                                 </form>
                             </div>
                         </div>
@@ -51,6 +51,8 @@
                             <div class="text"><p>{{ $product->product_text }}</p></div>
                             <div class="btn">
                                 <form class="" action="/cart/store" method="post">
+                                  {{ csrf_field() }}
+
                                 <span>
                                     <select class="" name="sum">
                                         @for ($i=1; $i <= 10 ; $i++)
@@ -59,8 +61,7 @@
                                     </select>
                                 </span>
                                     <input type="hidden" name="id" value="{{ $product->id }}">
-                                    <div class="form-bottom">カートに入れる</div>
-                                    {{ csrf_field() }}
+                                    <a class="form-bottom">カートに入れる</a>
                                 </form>
                             </div>
                         </div>
@@ -78,6 +79,7 @@
                             <div class="text"><p>{{ $product->product_text }}</p></div>
                             <div class="btn">
                                 <form class="" action="/cart/store" method="post">
+                                  {{ csrf_field() }}
                                 <span>
                                     <select class="" name="sum">
                                         @for ($i=1; $i <= 10 ; $i++)
@@ -86,8 +88,7 @@
                                     </select>
                                 </span>
                                     <input type="hidden" name="id" value="{{ $product->id }}">
-                                    <div class="form-bottom">カートに入れる</div>
-                                    {{ csrf_field() }}
+                                    <a class="form-bottom">カートに入れる</a>
                                 </form>
                             </div>
                         </div>
@@ -95,6 +96,7 @@
                 @endif
             @endforeach
         </div>
+
     </div>
 @endsection
 
@@ -104,11 +106,5 @@
             $('.product .title').heightLine();
             $('.product .text').heightLine();
         });
-        $(function () {
-            $('.form-bottom').click(function () {
-                var form = $(this).parent();
-                $(form).submit();
-            });
-        })
     </script>
 @endsection
