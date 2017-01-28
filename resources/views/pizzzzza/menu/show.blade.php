@@ -8,10 +8,13 @@
 @section('pankuzu')
     <ol class="breadcrumb">
         <li><a href="/pizzzzza/order">ホーム</a></li>
-        @if(is_null($product->deleted_at))
-            <li><a href="/pizzzzza/menu">商品一覧</a></li>
-        @else
+        @if(preg_match('{history}',$_SERVER["HTTP_REFERER"]))
             <li><a href="/pizzzzza/menu/history">商品履歴</a></li>
+        @elseif(preg_match('{accept}',$_SERVER["HTTP_REFERER"]))
+            <li><a href="/pizzzzza/order/accept/input">電話注文</a></li>
+            <li><a href="{{ url($_SERVER["HTTP_REFERER"]) }}">商品選択</a></li>
+        @else
+            <li><a href="/pizzzzza/menu">商品一覧</a></li>
         @endif
         <li class="active">{{$product->product_name}}</li>
     </ol>
@@ -82,7 +85,13 @@
             </form>
         </div>
         <div class="col-md-4 col-md-offset-4 mt">
-            <a href="/pizzzzza/menu" class="btn btn-default btn-lg btn-block">戻る</a>
+            @if(preg_match('{history}',$_SERVER["HTTP_REFERER"]))
+                <a href="/pizzzzza/menu/history" class="btn btn-default btn-lg btn-block">戻る</a>
+            @elseif(preg_match('{accept}',$_SERVER["HTTP_REFERER"]))
+                <a href="{{ url($_SERVER["HTTP_REFERER"]) }}" class="btn btn-default btn-lg btn-block">戻る</a>
+            @else
+                <a href="/pizzzzza/menu" class="btn btn-default btn-lg btn-block">戻る</a>
+            @endif
         </div>
     </div>
 @endsection
